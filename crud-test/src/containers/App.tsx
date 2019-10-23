@@ -3,6 +3,7 @@ import './App.css';
 import AutoForm from "../components/Auto/AutoForm";
 import AutoIndex from "../components/Auto/AutoIndex";
 import { Auto } from "../models/Auto";
+import { userInfo } from 'os';
 
 const App: React.FC = () => {
   const [autos, setAutos] = useState<Auto[]>(
@@ -17,9 +18,13 @@ const deleteAuto = (auto: Auto) => {
   setAutos(autos.filter(a => a.id !== auto.id));
 }
 
+const createAuto = (auto: Auto) => {
+  setAutos([...autos, {...auto, id: new Date().getTime()}]);
+}
+
 return (
   <div className="App">
-    <AutoForm />
+    <AutoForm onSave={createAuto} />
     <AutoIndex autos={autos} onDelete={deleteAuto} />
   </div>
 );
