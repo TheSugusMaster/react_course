@@ -17,6 +17,10 @@ const deleteAuto = (auto: Auto) => {
   setAutos(autos.filter(a => a.id !== auto.id));
 }
 
+const editAuto = (auto: Auto) => {
+  setAutos(autos.map(a => a.id === auto.id ? auto : a));
+}
+
 const createAuto = (auto: Auto) => {
   setAutos([...autos, {...auto, id: new Date().getTime()}]);
 }
@@ -24,7 +28,7 @@ const createAuto = (auto: Auto) => {
 return (
   <div className="App">
     <AutoForm onSave={createAuto} />
-    <AutoIndex autos={autos} onDelete={deleteAuto} />
+    <AutoIndex autos={autos} onEdit={editAuto} onDelete={deleteAuto} />
   </div>
 );
 }

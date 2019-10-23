@@ -1,9 +1,11 @@
 import React from "react";
 import { Auto } from "../../models/Auto";
+import AutoForm from "./AutoForm";
 
 interface Props {
     autos: Auto[],
     onDelete: (auto: Auto) => void;
+    onEdit: (auto: Auto) => void;
 }
 
 const AutoIndex: React.FC<Props> = (props) => {
@@ -34,6 +36,7 @@ const AutoIndex: React.FC<Props> = (props) => {
                             <td>{auto.year}</td>
                             <td>
                                 <button onClick={createDeleteAction(auto)}>Delete</button>
+                                <AutoForm onSave={props.onEdit} auto={auto} />
                             </td>
                         </tr>
                     )
