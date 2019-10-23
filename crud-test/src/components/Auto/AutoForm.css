@@ -1,0 +1,4 @@
+.AutoForm {
+    display: flex;
+    flex-direction: column;
+}
